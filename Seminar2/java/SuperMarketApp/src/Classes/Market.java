@@ -6,6 +6,7 @@ import java.util.List;
 import Interfaces.iActorBehaviour;
 import Interfaces.iMarcketBehaviour;
 import Interfaces.iQueueBehaviour;
+import Interfaces.iReturnOrder;
 
 public class Market implements iMarcketBehaviour,iQueueBehaviour {
 
@@ -18,7 +19,14 @@ public class Market implements iMarcketBehaviour,iQueueBehaviour {
     @Override
     public void acceptToMarket(iActorBehaviour actor) {
         System.out.println(actor.geActor().getName() + " клиент пришел в магазин ");
-        takeInQueue(actor);
+        if (actor.isTakeOrder()) {
+            if(((iReturnOrder)actor).returnOrder()) {
+                System.out.println(actor.geActor().getName() + " клиент отдал товар");
+                System.out.println(actor.geActor().getName() + " клиент ушел из магазина ");
+            }
+        } else {
+            takeInQueue(actor);
+        }
     }
 
     @Override
@@ -48,7 +56,11 @@ public class Market implements iMarcketBehaviour,iQueueBehaviour {
         for (iActorBehaviour actor : queue) {
             if (actor.isMakeOrder()) {
                 actor.setTakeOrder(true);
-                System.out.println(actor.geActor().getName() + " клиент получил свой заказ ");
+                if (actor.isTakeOrder()) {
+                    System.out.println(actor.geActor().getName() + " клиент получил свой заказ ");
+                } else {
+                    System.out.println(actor.geActor().getName() + " клиент не может получить свой заказ ");
+                }
             }
         }
     }
@@ -57,10 +69,10 @@ public class Market implements iMarcketBehaviour,iQueueBehaviour {
     public void releaseFromQueue() {
         List<Actor> releaseActors = new ArrayList<>();
         for (iActorBehaviour actor : queue) {
-            if (actor.isTakeOrder()) {
+            // if (actor.isTakeOrder()) {
                 releaseActors.add(actor.geActor());
                 System.out.println(actor.geActor().getName() + " клиент ушел из очереди ");
-            }
+            // }
         }
         releseFromMarket(releaseActors);
     }

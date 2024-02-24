@@ -1,8 +1,9 @@
 package Classes;
 
 import Interfaces.iActorBehaviour;
+import Interfaces.iReturnOrder;
 
-public class TaxInspector implements iActorBehaviour {
+public class TaxInspector implements iActorBehaviour, iReturnOrder {
     private String name;
     private boolean isTakeOrder;
     private boolean isMakeOrder;
@@ -38,4 +39,11 @@ public class TaxInspector implements iActorBehaviour {
         return new OrdinaryClient(name);
     }
     
+    public boolean returnOrder() {
+        if (this.isTakeOrder()) {
+            this.setTakeOrder(false);
+            return true;
+        }
+        return false;
+    }
 }

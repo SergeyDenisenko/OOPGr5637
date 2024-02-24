@@ -33,4 +33,12 @@ public class OrdinaryClient extends Actor {
     public void setName(String name) {
         super.name = name;
     }
+
+    public boolean returnOrder() {
+        if (this.isTakeOrder()) {
+            this.setTakeOrder(false);
+            return true;
+        }
+        return false;
+    }
 }
