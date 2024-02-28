@@ -30,9 +30,16 @@ public class StudentSteam implements Iterable<StudentGroup> {
         this.id = id;
     }
 
+    public int size() {
+        return steam.size();
+    }
+
     @Override
     public String toString() {
-        return "StudentSteam [steam=" + this.steam + "]" ;
+        // return "StudentSteam [steam=" + this.steam + "]" ;
+        return "Steam id: " + this.id + 
+                "\nNumber of groups: " + this.size() + 
+                "\nGroups:\n" + this.steam;
     }
 
     @Override

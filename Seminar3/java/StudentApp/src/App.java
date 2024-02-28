@@ -38,9 +38,6 @@ public class App {
         listStud2.add(s7);
         listStud2.add(s8);
         listStud2.add(s9);
-        listStud2.add(s10);
-        listStud2.add(s11);
-        listStud2.add(s12);
         
 
         StudentGroup group4681 = new StudentGroup(listStud2, 4681);
@@ -69,7 +66,18 @@ public class App {
         // System.out.println(steam);
         for(StudentGroup stdn : steam)
         {
-            System.out.println("\n --- " + stdn);
+            System.out.println( stdn);
         }
+
+        System.out.println("=========================================================");
+
+        Collections.sort(steam.get());
+        for(StudentGroup stdn : steam)
+        {
+            System.out.println(stdn);
+        }
+
+        System.out.println("=========================================================");
+        System.out.println(steam);
     }
 }
