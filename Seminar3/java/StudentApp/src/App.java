@@ -4,6 +4,7 @@ import java.util.List;
 
 import Domain.Student;
 import Domain.StudentGroup;
+import Domain.StudentSteam;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -25,6 +26,25 @@ public class App {
         
 
         StudentGroup group4580 = new StudentGroup(listStud, 4580);
+
+        Student s7 = new Student("Иван 2", 25);
+        Student s8 = new Student("Игор 2ь", 23);
+        Student s9 = new Student("Иван 2", 22);
+        Student s10 = new Student("Игорь 2",  23);
+        Student s11 = new Student("Даша 2",  23);
+        Student s12 = new Student("Лена 2",  23);
+
+        List<Student> listStud2 = new ArrayList<Student>();
+        listStud2.add(s7);
+        listStud2.add(s8);
+        listStud2.add(s9);
+        listStud2.add(s10);
+        listStud2.add(s11);
+        listStud2.add(s12);
+        
+
+        StudentGroup group4681 = new StudentGroup(listStud2, 4681);
+
         System.out.println(group4580);
 
         for(Student std : group4580)
@@ -41,5 +61,15 @@ public class App {
             System.out.println(std);
         }
 
+        System.out.println("=========================================================");
+
+        StudentSteam steam = new StudentSteam(4580);
+        steam.add(group4580);
+        steam.add(group4681);
+        // System.out.println(steam);
+        for(StudentGroup stdn : steam)
+        {
+            System.out.println("\n --- " + stdn);
+        }
     }
 }
