@@ -44,4 +44,22 @@ public class ModelClass implements iGetModel {
     public boolean deleteStudent(String idStudent) {
         return this.deleteStudent(Integer.parseInt(idStudent));
     }
+
+    /**
+     * @apiNote Добавляет список студентов
+     * @param listStudent
+     */
+    public void addAll(List<Student> listStudent) {
+        for (Student student: listStudent) {
+            this.students.add(student);
+        }
+    }
+
+    /**
+     * @apiNote Добавляет студента
+     * @param listStudent
+     */
+    public void add(Student student) {
+        this.students.add(student);
+    }
 }

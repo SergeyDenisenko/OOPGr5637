@@ -13,6 +13,7 @@ import Model.Domain.Student;
 public class FileModelClass implements iGetModel {
 
     private String fileName;
+    private List<Student> students = new ArrayList<Student>(); 
 
     public FileModelClass(String fileName) {
         this.fileName = fileName;
@@ -50,7 +51,9 @@ public class FileModelClass implements iGetModel {
      */
     @Override
     public List<Student> getAllStudents() {
-        List<Student> students  = new ArrayList<Student>();
+        if (students.size() > 0) {
+            return students;
+        }
         try
         {
             File file = new File(fileName);
@@ -73,5 +76,65 @@ public class FileModelClass implements iGetModel {
 
         return students;
     }
+
+    /**
+     * @apiNote Обновляет файл
+     * @param students
+     */
+    public void updateFile(List<Student> students) {
+        try(FileWriter fw = new FileWriter(fileName, false))
+        {
+            for(Student pers : students)
+            {
+                fw.write(pers.getName()+","+pers.getAge()+","+pers.getId());
+                fw.append('\n');
+            }
+            fw.flush();    
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * @apiNote Удалаяет студента из файла
+     * @param idStudent Идентификатор студента
+     * @return boolean
+     */
+    public boolean deleteStudent(Integer idStudent) {
+        List<Student> students = getAllStudents();
+        for (int i=0; i<students.size(); i++) {
+            if (students.get(i).getId()== idStudent) {
+                students.remove(i);
+                updateFile(students);
+                return true;
+            }
+        }
+        return false;
+    }
     
+    /**
+     * @apiNote Удалаяет студента из файла
+     * @param idStudent Идентификатор студента
+     * @return boolean
+     */
+    public boolean deleteStudent(String idStudent) {
+        return this.deleteStudent(Integer.parseInt(idStudent));
+    }
+
+    /**
+     * @apiNote Добавляет список студентов
+     * @param listStudent
+     */
+    public void addAll(List<Student> listStudent) {
+        this.saveAllStudentToFile(listStudent);
+    }
+
+    /**
+     * @apiNote Добавляет студента
+     * @param listStudent
+     */
+    public void add(Student student) {
+        this.students.add(student);
+        updateFile(this.students);
+    }
 }

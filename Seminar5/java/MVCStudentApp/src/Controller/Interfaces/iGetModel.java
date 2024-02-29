@@ -24,4 +24,16 @@ public interface iGetModel {
      * @return boolean
      */
     public boolean deleteStudent(String idStudent);
+
+    /**
+     * @apiNote Добавляет список студентов
+     * @param listStudent
+     */
+    public void addAll(List<Student> listStudent);
+
+    /**
+     * @apiNote Добавляет студента
+     * @param listStudent
+     */
+    public void add(Student student);
 }
