@@ -14,6 +14,10 @@ public class Student extends Person implements Comparable<Student> {
         this.id = idGenerator;
     }
 
+    /**
+     * 
+     * @return Возвращает идентификтор студента
+     */
     public int getId() {
         return id;
     }

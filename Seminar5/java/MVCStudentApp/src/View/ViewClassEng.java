@@ -6,9 +6,8 @@ import java.util.Scanner;
 import Controller.Interfaces.iGetView;
 import Model.Domain.Student;
 
-
-public class ViewClass implements iGetView {
-
+public class ViewClassEng implements iGetView {
+    
     /**
      * @apiNote Выводит в консоль список студентов
      * @param students Список студентов
@@ -16,14 +15,14 @@ public class ViewClass implements iGetView {
      */
     public void printAllStudents(List<Student> students)
     {
-        System.out.println("--------------------Список студентов-------------------");
-        for(Student s: students)
+        System.out.println("--------------------List of students-------------------");
+        for (Student s: students)
         {
             System.out.println(s);
         }
         System.out.println("-------------------------------------------------------");
     }
-    
+
     /**
      * @apiNote Читает строку из консоли
      * @param msg Информационное сообщение

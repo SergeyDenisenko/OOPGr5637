@@ -9,18 +9,34 @@ public abstract class Person {
         this.age = age;
     }
 
+    /**
+     * 
+     * @return Возвращает имя
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 
+     * @param name Устанавливает имя
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * 
+     * @return Возвращает возраст
+     */
     public int getAge() {
         return age;
     }
 
+    /**
+     * 
+     * @param age Устанавливает возраст
+     */
     public void setAge(int age) {
         this.age = age;
     }

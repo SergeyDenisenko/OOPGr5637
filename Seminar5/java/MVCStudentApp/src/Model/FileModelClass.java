@@ -25,13 +25,17 @@ public class FileModelClass implements iGetModel {
         }
     }
 
+    /**
+     * @apiNote Сохраняет список студентов в файл
+     * @param students Список студентов
+     */
     public void saveAllStudentToFile(List<Student> students)
     {
         try(FileWriter fw = new FileWriter(fileName, true))
         {
             for(Student pers : students)
             {
-                fw.write(pers.getName()+" "+pers.getAge()+" "+pers.getId());
+                fw.write(pers.getName()+","+pers.getAge()+","+pers.getId());
                 fw.append('\n');
             }
             fw.flush();    
@@ -40,6 +44,10 @@ public class FileModelClass implements iGetModel {
         }
     }
 
+    /**
+     * 
+     * @return Возвращает список студентов из файла
+     */
     @Override
     public List<Student> getAllStudents() {
         List<Student> students  = new ArrayList<Student>();
@@ -51,7 +59,7 @@ public class FileModelClass implements iGetModel {
             String line = reader.readLine();
             while(line!=null)
             {
-                String[] param = line.split(" ");
+                String[] param = line.split(",");
                 Student pers = new Student(param[0], Integer.parseInt(param[1]));
                 students.add(pers);
                 line = reader.readLine();

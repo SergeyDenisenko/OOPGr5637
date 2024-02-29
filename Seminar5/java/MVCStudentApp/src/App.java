@@ -35,13 +35,13 @@ public class App {
         studList.add(student9);
         studList.add(student10);
 
-        FileModelClass fmClass = new FileModelClass("StudentDB.csv");
+        // FileModelClass fmClass = new FileModelClass("StudentDB.csv");
         //fmClass.saveAllStudentToFile(studList);
 
         iGetView view = new ViewClass();
-        //iGetModel model = new ModelClass(studList);
+        iGetModel model = new ModelClass(studList);
 
-        ControllerClass controller = new ControllerClass(fmClass, view);
+        ControllerClass controller = new ControllerClass(model, view);
 
         //controller.update();
         controller.run();

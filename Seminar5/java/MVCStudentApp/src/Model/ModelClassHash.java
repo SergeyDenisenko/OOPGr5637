@@ -1,26 +1,32 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import Controller.Interfaces.iGetModel;
 import Model.Domain.Student;
 
-public class ModelClass implements iGetModel {
+public class ModelClassHash implements iGetModel {
     
-    private List<Student> students;     // Список студентов
+    private HashMap<Integer, Student> students;
 
-    public ModelClass(List<Student> students) {
-        this.students = students;
+    public void ModelClass(List<Student> studentsList) {
+        for (int i=0; i<studentsList.size(); i++) {
+            this.students.put(i, studentsList.get(i));
+        }
     }
 
     /**
      * @return Возвращает список студентов
      */
     public List<Student> getAllStudents() {
-        return students;
+        List<Student> studentsList = new ArrayList<>();
+        studentsList.addAll(this.students.values());
+        return studentsList;
     }
 
-    /**
+   /**
      * @apiNote Удалаяет студента из списка
      * @param idStudent Идентификатор студента
      * @return boolean

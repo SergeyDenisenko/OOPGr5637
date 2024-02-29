@@ -20,6 +20,11 @@ public class ControllerClass {
         this.view = view;
     }
 
+    /**
+     * @apiNote Проверяет наличие студентов в списке
+     * @param students Список студентов
+     * @return boolean
+     */
     private boolean testData(List<Student> students) {
         if (students.size() > 0) {
             return true;
@@ -42,6 +47,10 @@ public class ControllerClass {
 
     }
 
+    /**
+     * @apiNote Запускает окно команд
+     * @return void
+     */
     public void run() {
         Command com = Command.NONE;
         boolean getNewIteration = true;
@@ -55,6 +64,10 @@ public class ControllerClass {
                     break;
                 case LIST:
                     view.printAllStudents(model.getAllStudents());
+                    break;
+                case DELETE:
+                    String numberStudent = view.prompt("Введите номер студента на удаление: ");
+                    view.infoDelete(model.deleteStudent(numberStudent), numberStudent);
                     break;
             }
         }

@@ -7,4 +7,5 @@ import Model.Domain.Student;
 public interface iGetView {
     public void printAllStudents(List<Student> students);
     public String prompt(String msg);
+    public void infoDelete(boolean isDelete, String idStudent)
 }
